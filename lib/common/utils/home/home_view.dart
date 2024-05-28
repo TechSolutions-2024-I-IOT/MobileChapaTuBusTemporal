@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:go_router/go_router.dart';
 
 class HomeView extends StatelessWidget {
   static const name = 'Home';
@@ -8,29 +8,48 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SafeArea(
+      child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+              onTap: () {
+                context.go('/home/0/search');
+              },
               decoration: InputDecoration(
                 hintText: 'Busca una linea',
-                prefixIcon: const Icon(Icons.search),
+                hintStyle: const TextStyle(
+                  color: Colors.black,
+                ),
+                prefixIcon: const Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide.none, // Remove border
+                  borderSide: const BorderSide(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    width: 1.0,
+                  ),
                 ),
-                filled: true, // Fill the background
-                fillColor: Colors.grey[200], // Light grey background
+                filled: true,
+                fillColor: const Color.fromARGB(
+                    255, 249, 246, 246), // Light grey background
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Add vertical padding
+            padding: const EdgeInsets.symmetric(
+                horizontal: 16.0, vertical: 8.0), // Add vertical padding
             child: Container(
-              height: 100.0,
+              height: 130.0,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
+                border: Border.all(
+                  color: Colors.black,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(50.0),
                 image: const DecorationImage(
                   image: NetworkImage(
                       'https://elcomercio.pe/resizer/cQldVjFH-mDVWbJHJ2SqWAjsaI8=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/3UV4OIX2A5BTRDHLKF3QLWOUHA.jpg'), // Replace with your image
@@ -52,11 +71,16 @@ class HomeView extends StatelessWidget {
           const SizedBox(height: 16.0),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              'Líneas frecuentes',
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
+            child: SizedBox(
+              width: double.infinity,
+              child: Text(
+                'Líneas frecuentes',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.start,
               ),
             ),
           ),
@@ -64,12 +88,13 @@ class HomeView extends StatelessWidget {
             child: ListView.builder(
               itemCount: busLines.length,
               itemBuilder: (context, index) {
-                return BusLineCard(busLine: busLines[index]);
+                return BusLineCardHome(busLine: busLines[index]);
               },
             ),
           ),
         ],
-      );
+      ),
+    );
   }
 }
 
@@ -86,39 +111,40 @@ class BusLine {
 }
 
 final List<BusLine> busLines = [
-  BusLine(
-    code: '[209]',
-    name: 'Ate - San Miguel\nCorredor Rojo',
-    imagePath:
-        'https://upload.wikimedia.org/wikipedia/commons/5/59/Linea_7_-_Lima.jpg',
-  ),
-  BusLine(
-    code: '[CR71]',
-    name: 'Ate - San Martin de\nPorres',
-    imagePath:
-        'https://upload.wikimedia.org/wikipedia/commons/5/59/Linea_7_-_Lima.jpg', 
-  ),
-  BusLine(
-    code: '[CR07]',
-    name: 'Callao -\nLa Perla',
-    imagePath:
-        'https://upload.wikimedia.org/wikipedia/commons/5/59/Linea_7_-_Lima.jpg', 
-  ),
-];
+    BusLine(
+      code: '[209]',
+      name: 'Ate - San Miguel',
+      imagePath:
+          'https://upload.wikimedia.org/wikipedia/commons/5/59/Linea_7_-_Lima.jpg',
+    ),
+    BusLine(
+      code: '[CR71]',
+      name: 'Ate - San Martin de Porres',
+      imagePath:
+          'https://upload.wikimedia.org/wikipedia/commons/5/59/Linea_7_-_Lima.jpg',
+    ),
+    BusLine(
+      code: '[CR07]',
+      name: 'Callao - La Perla',
+      imagePath:
+          'https://upload.wikimedia.org/wikipedia/commons/5/59/Linea_7_-_Lima.jpg',
+    ),
+  ];
 
-class BusLineCard extends StatelessWidget {
+class BusLineCardHome extends StatelessWidget {
   final BusLine busLine;
 
-  const BusLineCard({super.key, required this.busLine});
+  const BusLineCardHome({super.key, required this.busLine});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Add horizontal padding
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Card(
+        color: Colors.white,
         elevation: 2.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0), // Rounded corners
+          borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -146,12 +172,24 @@ class BusLineCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
                     ),
                     const SizedBox(height: 4.0),
-                    Text(
-                      busLine.name,
-                      style: const TextStyle(fontSize: 14.0),
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: busLine.name,
+                            style: const TextStyle(
+                              fontSize: 12.0,
+                              color: Colors.black,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                      maxLines: 2,
                     ),
                   ],
                 ),

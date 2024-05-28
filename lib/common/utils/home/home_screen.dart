@@ -1,4 +1,4 @@
-import 'package:chapa_tu_bus_app/account_management/presentation/screens/profile/profile_view.dart';
+import 'package:chapa_tu_bus_app/account_management/presentation/screens/profile/profile_general_view.dart';
 import 'package:chapa_tu_bus_app/common/utils/home/home_view.dart';
 import 'package:chapa_tu_bus_app/common/widgets/bottom_nav_with_animated_icons.dart';
 import 'package:chapa_tu_bus_app/execution_monitoring/presentation/screens/favorites_view.dart';
@@ -38,25 +38,25 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   String getViewNameForIndex(int index) {
-  switch (index) {
-    case 0:
-      return HomeView.getViewName();
-    case 1:
-      return LineBusesView.getViewName();
-    case 2:
-      return FavoritesView.getViewName();
-    case 3:
-      return ProfileView.getViewName();
-    default:
-      return '';
+    switch (index) {
+      case 0:
+        return HomeView.getViewName();
+      case 1:
+        return LineBusesView.getViewName();
+      case 2:
+        return FavoritesView.getViewName();
+      case 3:
+        return ProfileGeneralView.getViewName();
+      default:
+        return '';
+    }
   }
-}
 
   final viewRoutes = [
     const HomeView(),
     const LineBusesView(),
     const FavoritesView(),
-    const ProfileView()
+    const ProfileGeneralView()
   ];
 
   void signUserOut() {
@@ -75,19 +75,19 @@ class _HomeScreenState extends State<HomeScreen>
   Map<String, dynamic> data = {};
 
   Future getUserData() async {
-      await FirebaseFirestore.instance.collection('users').get().then(
-            (snapshot) => snapshot.docs.forEach(
-              (document) {
-                print(document.data());
-                data = document.data();
-                name = data['name'];
-                email = data['email'];
-                phoneNumber = data['numberPhone'];
-                photoURL = data['photoURL'];
-              },
-            ),
-          );
-    }
+    await FirebaseFirestore.instance.collection('users').get().then(
+          (snapshot) => snapshot.docs.forEach(
+            (document) {
+              print(document.data());
+              data = document.data();
+              name = data['name'];
+              email = data['email'];
+              phoneNumber = data['numberPhone'];
+              photoURL = data['photoURL'];
+            },
+          ),
+        );
+  }
 
   Future<void> _checkLoginMethod() async {
     final providerData = user.providerData;
