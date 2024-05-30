@@ -99,11 +99,13 @@ class HomeView extends StatelessWidget {
 }
 
 class BusLine {
+  final int id;
   final String code;
   final String name;
   final String imagePath;
 
   BusLine({
+    required this.id,
     required this.code,
     required this.name,
     required this.imagePath,
@@ -112,18 +114,21 @@ class BusLine {
 
 final List<BusLine> busLines = [
     BusLine(
+      id: 1,
       code: '[209]',
       name: 'Ate - San Miguel',
       imagePath:
           'https://upload.wikimedia.org/wikipedia/commons/5/59/Linea_7_-_Lima.jpg',
     ),
     BusLine(
+      id: 2,
       code: '[CR71]',
       name: 'Ate - San Martin de Porres',
       imagePath:
           'https://upload.wikimedia.org/wikipedia/commons/5/59/Linea_7_-_Lima.jpg',
     ),
     BusLine(
+      id: 3,
       code: '[CR07]',
       name: 'Callao - La Perla',
       imagePath:
@@ -138,63 +143,68 @@ class BusLineCardHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: Card(
-        color: Colors.white,
-        elevation: 2.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 100.0,
-                height: 80.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  image: DecorationImage(
-                    image: NetworkImage(busLine.imagePath),
-                    fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        context.go('/home/1/line/${busLine.id}');
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: Card(
+          color: Colors.white,
+          elevation: 2.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 100.0,
+                  height: 80.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    image: DecorationImage(
+                      image: NetworkImage(busLine.imagePath),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 16.0),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      busLine.code,
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                const SizedBox(width: 16.0),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        busLine.code,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 4.0),
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: busLine.name,
-                            style: const TextStyle(
-                              fontSize: 12.0,
-                              color: Colors.black,
-                              overflow: TextOverflow.ellipsis,
+                      const SizedBox(height: 4.0),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: busLine.name,
+                              style: const TextStyle(
+                                fontSize: 12.0,
+                                color: Colors.black,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        maxLines: 2,
                       ),
-                      maxLines: 2,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

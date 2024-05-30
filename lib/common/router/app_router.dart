@@ -6,6 +6,7 @@ import 'package:chapa_tu_bus_app/common/utils/home/home_view.dart';
 import 'package:chapa_tu_bus_app/common/utils/home/start_screen.dart';
 import 'package:chapa_tu_bus_app/common/utils/search/search_view.dart';
 import 'package:chapa_tu_bus_app/execution_monitoring/presentation/screens/favorites_view.dart';
+import 'package:chapa_tu_bus_app/execution_monitoring/presentation/screens/line_bus_detail_view.dart';
 import 'package:chapa_tu_bus_app/execution_monitoring/presentation/screens/line_buses_view.dart';
 import 'package:chapa_tu_bus_app/subscriptions/presentation/screens/add_card_view.dart';
 import 'package:chapa_tu_bus_app/subscriptions/presentation/screens/description_plan_view.dart';
@@ -96,5 +97,16 @@ final appRouter = GoRouter(initialLocation: '/', routes: [
   GoRoute(
     path: '/home/0/search',
     builder: (context, state) => const SearchView(),
+  ),
+  GoRoute(
+    path: '/home/1/line/:lineId',
+    pageBuilder: (context, state) {
+      final lineId = int.parse(state.pathParameters['lineId'] ?? '0');
+
+      return MaterialPage(
+        key: state.pageKey,
+        child: LineBusDetailView(lineId: lineId),
+      );
+    },
   ),
 ]);
