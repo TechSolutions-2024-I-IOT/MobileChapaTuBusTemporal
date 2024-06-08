@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:chapa_tu_bus_app/common/utils/home/home_view.dart';
+import 'package:chapa_tu_bus_app/execution_monitoring/presentation/screens/map_screen.dart';
+import 'package:chapa_tu_bus_app/execution_monitoring/presentation/utils/bus_lines.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -60,12 +61,7 @@ class _LineBusDetailViewState extends State<LineBusDetailView> {
                 ],
               ),
               const SizedBox(height: 16),
-              CachedNetworkImage(
-                imageUrl: busLine.imagePath,
-                width: double.infinity,
-                height: 200,
-                fit: BoxFit.cover,
-              ),
+              const MapScreen(),
               const SizedBox(height: 16),
               const Text('Paradero: Plaza Norte',
                   style: TextStyle(fontSize: 16)),
@@ -73,26 +69,38 @@ class _LineBusDetailViewState extends State<LineBusDetailView> {
                   style: TextStyle(fontSize: 16)),
               const Text('Aforo: 15/30 (50%)', style: TextStyle(fontSize: 16)),
               const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  // Acción para ver próximos buses
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                ),
-                child: const Text('Ver próximos buses'),
-              ),
-              const SizedBox(width: 16),
-              IconButton(
-                icon: Icon(
-                  isFavorite ? Icons.star : Icons.star_border,
-                  color: isFavorite ? Colors.yellow : Colors.grey,
-                ),
-                onPressed: () {
-                  setState(() {
-                    isFavorite = !isFavorite;
-                  });
-                },
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      //TODO: Acción para ver próximos buses
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 116, 153, 182),
+                    ),
+                    child: const Text('Ver próximos buses'),
+                  ),
+                  const SizedBox(width: 16),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 2,
+                      backgroundColor:
+                          isFavorite ? Colors.yellow : Colors.white,
+                      padding: EdgeInsets.zero,
+                      shape: const CircleBorder(),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                    },
+                    child: Icon(
+                      isFavorite ? Icons.star_outline : Icons.star_border,
+                      color: isFavorite ? Colors.black : Colors.black,
+                      size: 24, // Adjust icon size as needed
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

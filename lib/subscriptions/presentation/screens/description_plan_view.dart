@@ -31,7 +31,7 @@ class DescriptionPlanView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildPlanInfoCard(
+              BuildPlanInfoCard(
                 icon: Icons.directions_bus,
                 planName: 'Premium',
                 status: 'Activo',
@@ -40,9 +40,9 @@ class DescriptionPlanView extends StatelessWidget {
                 iconColor: Colors.blue,
               ),
               const SizedBox(height: 16),
-              _buildPlanDetailsCard(
+              BuildPlanDetailsCard(
                 title: 'Esto es lo que incluye el plan',
-                details: [
+                details: const [
                   '1 cuenta Premium',
                   'Navega sin anuncios',
                   'Añade cuantas líneas quieras a tus favoritos',
@@ -61,14 +61,27 @@ class DescriptionPlanView extends StatelessWidget {
   }
 }
 
-Widget _buildPlanInfoCard({
-    required IconData icon,
-    required String planName,
-    required String status,
-    required String renewalDate,
-    required Color color,
-    required Color iconColor,
-  }) {
+class BuildPlanInfoCard extends StatelessWidget {
+
+  final IconData icon;
+  final String planName;
+  final String status;
+  final String renewalDate;
+  final Color color;
+  final Color iconColor;
+
+  const BuildPlanInfoCard({
+    super.key,
+    required this.icon, 
+    required this.planName, 
+    required this.status, 
+    required this.renewalDate, 
+    required this.color, 
+    required this.iconColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -114,13 +127,23 @@ Widget _buildPlanInfoCard({
       ),
     );
   }
+}
 
-  Widget _buildPlanDetailsCard({
-    required String title,
-    required List<String> details,
-    required String buttonText,
-    required VoidCallback onPressed,
-  }) {
+class BuildPlanDetailsCard extends StatelessWidget {
+  final String title;
+  final List<String> details;
+  final String buttonText;
+  final VoidCallback onPressed;
+  const BuildPlanDetailsCard({
+    super.key, 
+    required this.title, 
+    required this.details, 
+    required this.buttonText, 
+    required this.onPressed
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -162,4 +185,4 @@ Widget _buildPlanInfoCard({
       ),
     );
   }
-
+}

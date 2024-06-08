@@ -25,13 +25,13 @@ class PlansAvailableView extends StatelessWidget {
           },
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildPlanCard(
+              BuildPlanCard(
                 planName: 'Premium',
                 features: [
                   '1 cuenta Premium',
@@ -41,8 +41,8 @@ class PlansAvailableView extends StatelessWidget {
                   'Información actualizada sobre el\nestado de los próximos buses más\ncercanos a tu ubicación',
                 ],
               ),
-              const SizedBox(height: 16),
-              _buildPlanCard(
+              SizedBox(height: 16),
+              BuildPlanCard(
                 planName: 'Estudiantes',
                 features: [
                   '1 cuenta Premium verificada',
@@ -60,10 +60,13 @@ class PlansAvailableView extends StatelessWidget {
   }
 }
 
-Widget _buildPlanCard({
-    required String planName,
-    required List<String> features,
-  }) {
+class BuildPlanCard extends StatelessWidget {
+  final String planName;
+  final List<String> features;
+  const BuildPlanCard({super.key, required this.planName, required this.features});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -95,3 +98,4 @@ Widget _buildPlanCard({
       ),
     );
   }
+}

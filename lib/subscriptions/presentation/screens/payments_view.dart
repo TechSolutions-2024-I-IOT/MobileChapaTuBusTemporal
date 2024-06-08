@@ -40,12 +40,12 @@ class PaymentsView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              _buildPaymentItem(
+              const BuildPaymentItem(
                 title: 'Suscripción premium',
                 amount: 'S/.24.00',
                 date: '20/04/2024',
               ),
-              _buildPaymentItem(
+              const BuildPaymentItem(
                 title: 'Suscripción premium',
                 amount: 'S/.24.00',
                 date: '20/03/2024',
@@ -117,11 +117,14 @@ class PaymentsView extends StatelessWidget {
   }
 }
 
-Widget _buildPaymentItem({
-    required String title,
-    required String amount,
-    required String date,
-  }) {
+class BuildPaymentItem extends StatelessWidget {
+  final String title;
+  final String amount;
+  final String date;
+  const BuildPaymentItem({super.key, required this.title, required this.amount, required this.date});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
@@ -160,3 +163,5 @@ Widget _buildPaymentItem({
       ),
     );
   }
+}
+

@@ -22,7 +22,7 @@ class MySubscriptionView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildSubscriptionItem(
+              BuildSubscriptionItem(
                 icon: Icons.directions_bus,
                 title: 'Premium',
                 status: 'Activo',
@@ -33,7 +33,7 @@ class MySubscriptionView extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 16),
-              _buildSubscriptionItem(
+              BuildSubscriptionItem(
                 icon: Icons.search,
                 title: 'Ver planes disponibles',
                 subtitle: 'Premium, Estudiantes',
@@ -51,15 +51,27 @@ class MySubscriptionView extends StatelessWidget {
   }
 }
 
- Widget _buildSubscriptionItem({
-    required IconData icon,
-    required String title,
-    String status = '',
-    String subtitle = '',
-    required Color color,
-    required Color iconColor,
-    required VoidCallback onTap,
-  }) {
+class BuildSubscriptionItem extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String status;
+  final String subtitle;
+  final Color color;
+  final Color iconColor;
+  final VoidCallback onTap;
+  const BuildSubscriptionItem({
+    super.key, 
+    required this.icon, 
+    required this.title,
+    this.status = '',
+    this.subtitle = '', 
+    required this.color, 
+    required this.iconColor, 
+    required this.onTap
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -117,3 +129,4 @@ class MySubscriptionView extends StatelessWidget {
       ),
     );
   }
+}

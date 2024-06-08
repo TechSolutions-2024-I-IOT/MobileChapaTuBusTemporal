@@ -1,6 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chapa_tu_bus_app/account_management/presentation/bloc/auth/auth_bloc.dart';
+import 'package:chapa_tu_bus_app/account_management/presentation/widgets/auth/my_button.dart';
+import 'package:chapa_tu_bus_app/account_management/presentation/widgets/auth/my_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_text_form_field/flutter_text_form_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -10,7 +13,7 @@ class ResetPasswordScreen extends StatefulWidget {
 }
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
-  // email textfield controller
+  final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
 
   @override
@@ -19,112 +22,79 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     super.dispose();
   }
 
-  Future passwordReset() async {
-    try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: emailController.text.trim());
-      // show success message
-      successMessage();
-    } on FirebaseAuthException catch (e) {
-      print(e);
-      // show error message
-      showErrorMessage(e.message.toString());
+  void _resetPassword() {
+    if (_formKey.currentState!.validate()) {
+      context.read<AuthBloc>().add(
+            ResetPasswordRequested(email: emailController.text.trim()),
+          );
     }
   }
 
-  void successMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          backgroundColor: Colors.deepPurple,
-          title: Text(
-            'Se ha enviado un link a su email para restablecer su contraseña. Revise su bandeja de entrada.',
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-      },
+  void _showSuccessMessage() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+          content: Text(
+              'Se ha enviado un enlace a su correo electrónico para restablecer su contraseña.')),
     );
   }
 
-  void showErrorMessage(String message) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: Colors.deepPurple,
-          title: Text(
-            message,
-            style: const TextStyle(color: Colors.white),
-          ),
-        );
-      },
+  void _showErrorMessage(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 1,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25.0),
-            child: Text(
-              '¿Olvidaste tu contraseña?',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is ResetPasswordSuccess) {
+          _showSuccessMessage();
+          Navigator.pop(context);
+        } else if (state is AuthError) {
+          _showErrorMessage(state.message);
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 1,
+          title: const Text(
+            'Restablecer Contraseña',
+            style: TextStyle(color: Colors.black),
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => context.go('/auth'),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Ingrese su dirección de correo electrónico para restablecer su contraseña:',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18),
+                ),
+                const SizedBox(height: 20),
+                MyTextField(
+                  controller: emailController,
+                  hintText: 'Email',
+                  obscureText: false,
+                ),
+                const SizedBox(height: 30),
+                MyButton(
+                  text: 'Enviar',
+                  onTap: _resetPassword,
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 25),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 120.0),
-            child: Text(
-              'Enviaremos un enlace de recuperación a tu correo',
-              textAlign: TextAlign.justify,
-              style: TextStyle(fontSize: 15),
-            ),
-          ),
-
-          const SizedBox(height: 25),
-          
-          // email textfield
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: CustomTextField(
-              emailController,
-              hint: 'Email',
-              password: false,
-            ),
-          ),
-
-          const SizedBox(
-            height: 25.0,
-          ),
-
-          // reset password button
-          MaterialButton(
-            onPressed: passwordReset,
-            color: const Color(0xFF556BDA),
-            minWidth: 200,
-            height: 50,
-            elevation: 1,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: const Text(
-              'Enviar',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
