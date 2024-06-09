@@ -10,11 +10,11 @@ class BusDataSourceImpl implements BusDataSource {
   BusDataSourceImpl({required this.dio});
 
   @override
-  Future<List<Bus>> getBusesByUserId(
-      {required String token, required int userId}) async {
+  Future<List<Bus>> getBusesByCompanyId(
+      {required String token, required int companyId}) async {
     try {
       final response = await dio.get(
-        '$baseUrl/transport-company/buses?userId=$userId', 
+        '$baseUrl/transport-company/buses?userId=$companyId', 
         options: Options(
           headers: {'Authorization': 'Bearer $token'},
         ),

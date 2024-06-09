@@ -6,6 +6,8 @@ import 'package:chapa_tu_bus_app/account_management/presentation/screens/auth/au
 import 'package:chapa_tu_bus_app/account_management/presentation/screens/auth/reset_password_screen.dart';
 import 'package:chapa_tu_bus_app/account_management/presentation/screens/profile/profile_general_view.dart';
 import 'package:chapa_tu_bus_app/account_management/presentation/screens/profile/settings_view.dart';
+import 'package:chapa_tu_bus_app/execution_monitoring/infrastructure/data_sources/location_datasource.dart';
+import 'package:chapa_tu_bus_app/execution_monitoring/infrastructure/repositories/location_repository_impl.dart';
 import 'package:chapa_tu_bus_app/execution_monitoring/presentation/blocs/gps/gps_bloc.dart';
 import 'package:chapa_tu_bus_app/execution_monitoring/presentation/blocs/location/location_bloc.dart';
 import 'package:chapa_tu_bus_app/execution_monitoring/presentation/screens/gps_access_screen.dart';
@@ -24,6 +26,7 @@ import 'package:chapa_tu_bus_app/subscriptions/presentation/screens/description_
 import 'package:chapa_tu_bus_app/subscriptions/presentation/screens/my_subscription_view.dart';
 import 'package:chapa_tu_bus_app/subscriptions/presentation/screens/payments_view.dart';
 import 'package:chapa_tu_bus_app/subscriptions/presentation/screens/plans_available_view.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -130,7 +133,11 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/maps',
       builder: (context, state) => BlocProvider(
-        create: (context) => LocationBloc(),
+        create: (context) => LocationBloc(
+          LocationRepositoryImpl( // Provide the LocationRepositoryImpl
+              locationDataSource: LocationDataSourceImpl(dio: context.read<Dio>()) // Assuming you have a LocationDataSourceImpl
+          ),
+        ),
         child: const MapScreen(),
       ),
     ),

@@ -2,8 +2,8 @@ import 'package:chapa_tu_bus_app/execution_monitoring/domain/entities/location.d
 
 class LocationModel {
     final int id;
-    final int lat;
-    final int lng;
+    final double lat;
+    final double lng;
 
     LocationModel({
         required this.id,

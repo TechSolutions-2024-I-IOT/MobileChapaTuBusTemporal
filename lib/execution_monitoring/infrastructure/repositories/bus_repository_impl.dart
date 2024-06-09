@@ -9,8 +9,8 @@ class BusRepositoryImpl implements BusRepository {
 
   @override
   Future<List<Bus>> getBusesByUserId(
-      {required String token, required int userId}) async {
-    return await busDataSource.getBusesByUserId(
-        token: token, userId: userId);
+      {required String token, required int companyId}) async {
+    return await busDataSource.getBusesByCompanyId(
+        token: token, companyId: companyId);
   }
 }

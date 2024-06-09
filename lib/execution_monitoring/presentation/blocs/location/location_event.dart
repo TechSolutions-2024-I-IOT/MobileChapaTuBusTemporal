@@ -16,3 +16,15 @@ class OnNewUserLocationEvent extends LocationEvent {
 class OnStartFollowingUser extends LocationEvent {}
 
 class OnStopFollowingUser extends LocationEvent {}
+
+class FetchInitialLocationEvent extends LocationEvent {
+  final String token; 
+
+  const FetchInitialLocationEvent({required this.token});
+}
+
+class UserLocationChangedEvent extends LocationEvent {
+  final LatLng? location; 
+
+  const UserLocationChangedEvent({this.location});
+}

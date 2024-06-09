@@ -7,7 +7,7 @@ import 'package:chapa_tu_bus_app/execution_monitoring/domain/logic/get_locations
 
 class TransportCompanyFacadeService {
   final GetLocations getLocations;
-  final GetBusesByUserId getBusesByUserId;
+  final GetBusesByCompanyId getBusesByUserId;
   final GetAllCompanies getAllCompanies;
 
   TransportCompanyFacadeService({
@@ -32,7 +32,7 @@ class TransportCompanyFacadeService {
     try {
       final buses = await getBusesByUserId.call(
         token: token, 
-        userId: userId
+        companyId: userId
       );
       return buses;
     } catch (e) {

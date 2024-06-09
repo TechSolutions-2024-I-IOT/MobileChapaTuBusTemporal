@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:chapa_tu_bus_app/execution_monitoring/presentation/blocs/blocs.dart';
-import 'package:chapa_tu_bus_app/shared/theme/map_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -30,7 +27,7 @@ class MapView extends StatelessWidget {
         myLocationEnabled: true,
         myLocationButtonEnabled: true,
         zoomControlsEnabled: true,
-        style: jsonEncode(mapTheme),
+        //style: jsonEncode(mapTheme),
 
         onMapCreated:(controller) => mapBloc.add(OnMapInitializedEvent(controller)),
 
