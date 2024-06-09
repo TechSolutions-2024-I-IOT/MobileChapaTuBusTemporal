@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:chapa_tu_bus_app/account_management/application/auth_facade_service.dart';
 import 'package:chapa_tu_bus_app/account_management/domain/entities/user.dart';
+import 'package:chapa_tu_bus_app/account_management/presentation/bloc/auth/auth_bloc.dart';
 
 import 'package:equatable/equatable.dart';
 
@@ -8,11 +9,13 @@ part 'settings_event.dart';
 part 'settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
-  final AuthFacadeService _authFacadeService; // Use AuthFacadeService
+  final AuthFacadeService _authFacadeService;
+  final AuthBloc _authBloc;
 
   SettingsBloc({
-    required AuthFacadeService authFacadeService, // Inject AuthFacadeService
-  })  : _authFacadeService = authFacadeService,
+    required AuthFacadeService authFacadeService,
+    required AuthBloc authBloc,
+  })  : _authFacadeService = authFacadeService, _authBloc = authBloc,
         super(SettingsInitial()) {
     on<SettingsLoadRequested>(_onSettingsLoadRequested);
     on<SettingsUpdateRequested>(_onSettingsUpdateRequested);
@@ -23,7 +26,19 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       SettingsLoadRequested event, Emitter<SettingsState> emit) async {
     emit(SettingsLoading());
     try {
-      final user = await _authFacadeService.getCurrentUser(); // Use getCurrentUser from AuthFacadeService
+      final authState = _authBloc.state;
+
+      User? user;
+      if (authState is Authenticated) {
+        if (authState.isFirebase) {
+          // User logged in with Firebase
+          user = await _authFacadeService.getCurrentUser(); 
+        } else {
+          // User logged in with Backend
+          user = await _authFacadeService.getUserProfile(); 
+        }
+      } 
+
       if (user != null) {
         emit(SettingsLoaded(user: user));
       } else {

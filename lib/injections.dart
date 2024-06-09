@@ -81,7 +81,7 @@ Future<void> init() async {
 
   serviceLocator.registerFactory(() => ProfileBloc(authApi: serviceLocator()));
 
-  serviceLocator.registerFactory(() => SettingsBloc(authFacadeService: serviceLocator()));
+  serviceLocator.registerFactory(() => SettingsBloc(authFacadeService: serviceLocator(), authBloc: serviceLocator()));
 
   // Execution Monitoring
 
