@@ -1,3 +1,5 @@
+import 'package:chapa_tu_bus_app/execution_monitoring/domain/entities/favorite_bus_line.dart';
+import 'package:chapa_tu_bus_app/execution_monitoring/presentation/utils/favorites_bus_lines.dart';
 import 'package:flutter/material.dart';
 
 class FavoritesView extends StatelessWidget {
@@ -25,13 +27,12 @@ class FavoritesView extends StatelessWidget {
             right: 16.0,
             child: ElevatedButton(
               onPressed: () {
-                // Agrega aquí la lógica para "Editar"
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
                 foregroundColor: Colors.white,
               ),
-              child: const Text('Editar'),
+              child: const Text('Edit'),
             ),
           ),
         ],
@@ -39,36 +40,6 @@ class FavoritesView extends StatelessWidget {
     );
   }
 }
-
-class FavoriteBusLine {
-  final String code;
-  final String name;
-  final String imagePath;
-
-  FavoriteBusLine({
-    required this.code,
-    required this.name,
-    required this.imagePath,
-  });
-}
-
-final List<FavoriteBusLine> favoriteBusLines = [
-  FavoriteBusLine(
-    code: '[209]',
-    name: 'Ate - San Miguel\nCorredor Rojo',
-    imagePath: 'https://upload.wikimedia.org/wikipedia/commons/5/59/Linea_7_-_Lima.jpg', // Replace with actual image path
-  ),
-  FavoriteBusLine(
-    code: '[CR71]',
-    name: 'Ate - San Martin de\nPorres',
-    imagePath: 'https://upload.wikimedia.org/wikipedia/commons/5/59/Linea_7_-_Lima.jpg', // Replace with actual image path
-  ),
-  FavoriteBusLine(
-    code: '[CR07]',
-    name: 'Callao -\nLa Perla',
-    imagePath: 'https://upload.wikimedia.org/wikipedia/commons/5/59/Linea_7_-_Lima.jpg', // Replace with actual image path
-  ),
-];
 
 class FavoriteBusLineCard extends StatelessWidget {
   final FavoriteBusLine busLine;

@@ -16,12 +16,12 @@ class _ProfileGeneralViewState extends State<ProfileGeneralView> {
   @override
   void initState() {
     super.initState();
-    // Disparar evento para cargar el perfil del usuario
+    
     context.read<ProfileBloc>().add(ProfileLoadRequested());
   }
 
   void _signOut() {
-    // Disparar evento para cerrar sesión
+    
     context.read<ProfileBloc>().add(ProfileSignOutRequested());
   }
 
@@ -29,7 +29,7 @@ class _ProfileGeneralViewState extends State<ProfileGeneralView> {
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileBloc, ProfileState>(
       listener: (context, state) {
-        // Manejar estados que requieren acciones (como navegación)
+        
         if (state is ProfileSignOutSuccess) {
           context.go('/start');
         } else if (state is ProfileError) {
@@ -39,12 +39,12 @@ class _ProfileGeneralViewState extends State<ProfileGeneralView> {
         }
       },
       builder: (context, state) {
-        // Construir la UI en función del estado del ProfileBloc
+        
         if (state is ProfileLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is ProfileLoaded) {
           final user = state.user;
-          // Get the correct name based on user type
+          
           final userName = user.name ?? '${user.firstName} ${user.lastName}';
           return SingleChildScrollView(
             child: Padding(
@@ -80,10 +80,10 @@ class _ProfileGeneralViewState extends State<ProfileGeneralView> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  // Opciones del perfil (puedes adaptarlas según tus necesidades)
+                 
                   BuildProfileOption(
                     icon: Icons.settings,
-                    text: 'Configuración',
+                    text: 'Configuration',
                     isShowMore: true,
                     onTap: () async {
                       context.go('/home/3/settings');
@@ -91,7 +91,7 @@ class _ProfileGeneralViewState extends State<ProfileGeneralView> {
                   ),
                   BuildProfileOption(
                     icon: Icons.credit_card,
-                    text: 'Pagos',
+                    text: 'Payments',
                     isShowMore: true,
                     onTap: () {
                       context.go('/home/3/payments');
@@ -99,7 +99,7 @@ class _ProfileGeneralViewState extends State<ProfileGeneralView> {
                   ),
                   BuildProfileOption(
                     icon: Icons.percent,
-                    text: 'Mi suscripción',
+                    text: 'My subscriptions',
                     isShowMore: true,
                     onTap: () {
                       context.go('/home/3/subscriptions');
@@ -107,7 +107,7 @@ class _ProfileGeneralViewState extends State<ProfileGeneralView> {
                   ),
                   BuildProfileOption(
                     icon: Icons.favorite,
-                    text: 'Mis favoritos',
+                    text: 'My favorites',
                     isShowMore: true,
                     onTap: () {
                       context.go('/home/2');
@@ -115,13 +115,13 @@ class _ProfileGeneralViewState extends State<ProfileGeneralView> {
                   ),
                   const BuildProfileOption(
                     icon: Icons.notifications,
-                    text: 'Notificaciones',
+                    text: 'Notifications',
                     isSwitch: true,
                   ),
 
                   BuildProfileOption(
                     icon: Icons.exit_to_app,
-                    text: 'Cerrar sesión',
+                    text: 'Sign out',
                     onTap: _signOut,
                   ),
                 ],

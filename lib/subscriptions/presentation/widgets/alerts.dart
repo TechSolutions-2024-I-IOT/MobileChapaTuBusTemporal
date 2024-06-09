@@ -6,21 +6,21 @@ mostrarLoading( BuildContext context ) {
     context: context,
     barrierDismissible: false,
     builder: ( _ ) => const AlertDialog(
-      title: Text('Espere...'),
+      title: Text('Wait...'),
       content: LinearProgressIndicator(),
     )
   );
 
 }
 
-mostrarAlerta( BuildContext context, String titulo, String mensaje ) {
+mostrarAlerta( BuildContext context, String title, String message ) {
 
   showDialog(
     context: context,
     barrierDismissible: false,
     builder: ( _ ) => AlertDialog(
-      title: Text( titulo ),
-      content: Text( mensaje ),
+      title: Text( title ),
+      content: Text( message ),
       actions: [
         MaterialButton(
           child: const Text('Ok'),

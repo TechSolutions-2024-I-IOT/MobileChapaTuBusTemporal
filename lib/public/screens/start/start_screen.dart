@@ -55,7 +55,7 @@ class StartScreen extends StatelessWidget {
             
                 // movilizarse nunca fue tan facil
                 const Text(
-                  'Movilizarse nunca fue tan fácil',
+                  'Moving around has never been so easy',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -68,7 +68,7 @@ class StartScreen extends StatelessWidget {
             
                 // iniciar ahora
                 MyButton(
-                  text: 'Iniciar ahora',
+                  text: 'Start now',
                   onTap: () {
                     context.go('/auth');
                   }

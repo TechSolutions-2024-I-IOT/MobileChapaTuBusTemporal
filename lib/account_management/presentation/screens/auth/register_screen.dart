@@ -18,7 +18,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  final roleController = TextEditingController();
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
 
@@ -29,7 +28,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     emailController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
-    roleController.dispose();
     super.dispose();
   }
 
@@ -39,7 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         context.read<AuthBloc>().add(RegisterBackendRequested(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
-          role: roleController.text.trim(), 
+          role: 'ROLE_PASSENGER', 
           firstName: firstNameController.text.trim(), 
           lastName: lastNameController.text.trim(),
         ));
@@ -103,7 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     // Let's create an account text
                     const Text(
-                      '¡Vamos a crear una cuenta para ti!',
+                      'Let\'s create an account for you!',
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
@@ -115,7 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     // Name textfield
                     MyTextField(
                       controller: firstNameController,
-                      hintText: 'Nombre',
+                      hintText: 'FirstName',
                       obscureText: false,
                     ),
 
@@ -124,7 +122,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     // Last name textfield
                     MyTextField(
                       controller: lastNameController,
-                      hintText: 'Apellido',
+                      hintText: 'LastName',
                       obscureText: false,
                     ),
 
@@ -142,7 +140,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     // Password textfield
                     MyTextField(
                       controller: passwordController,
-                      hintText: 'Contraseña',
+                      hintText: 'Password',
                       obscureText: true,
                     ),
 
@@ -151,24 +149,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     // Confirm password textfield
                     MyTextField(
                       controller: confirmPasswordController,
-                      hintText: 'Confirmar contraseña',
+                      hintText: 'Confirm Password',
                       obscureText: true,
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    // Role textfield
-                    MyTextField(
-                      controller: roleController,
-                      hintText: 'Rol',
-                      obscureText: false,
                     ),
 
                     const SizedBox(height: 25),
 
                     // Register button
                     MyButton(
-                      text: 'Registrarse',
+                      text: 'Register',
                       onTap: _signUpWithEmailAndPassword,
                     ),
 
@@ -188,7 +177,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10.0),
                             child: Text(
-                              'O continuar con',
+                              'Or continue with',
                               style: TextStyle(color: Colors.grey[700]),
                             ),
                           ),
@@ -224,14 +213,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          '¿Ya tienes una cuenta?',
+                          'Already have an account?',
                           style: TextStyle(color: Colors.grey),
                         ),
                         const SizedBox(width: 4),
                         GestureDetector(
                           onTap: widget.onTap,
                           child: const Text(
-                            'Inicia sesión ahora',
+                            'Log in now',
                             style: TextStyle(
                               color: Colors.blue,
                               fontWeight: FontWeight.bold,

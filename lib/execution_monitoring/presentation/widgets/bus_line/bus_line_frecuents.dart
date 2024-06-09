@@ -12,7 +12,7 @@ class BusLinesFrecuents extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: Text(
-          'Líneas frecuentes',
+          'Frequent Lines',
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,

@@ -24,9 +24,9 @@ void main() async {
   final users = await database.getAllUsers();
 
   if (users.isEmpty) {
-    print('La base de datos está vacía.');
+    print('The database is empty.');
   } else {
-    print('La base de datos tiene ${users.length} usuarios.');
+    print('The database have ${users.length} users.');
   }
   runApp(
     

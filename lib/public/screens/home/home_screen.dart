@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    //_checkLoginMethod();
+
     pageController = PageController(
       initialPage: widget.pageIndex,
       keepPage: true,
@@ -72,35 +72,6 @@ class _HomeScreenState extends State<HomeScreen>
 
   Map<String, dynamic> data = {};
 
-  /*Future getUserData() async {
-    await FirebaseFirestore.instance.collection('users').get().then(
-          (snapshot) => snapshot.docs.forEach(
-            (document) {
-              print(document.data());
-              data = document.data();
-              name = data['name'];
-              email = data['email'];
-              phoneNumber = data['numberPhone'];
-              photoURL = data['photoURL'];
-            },
-          ),
-        );
-  }*/
-
-  /*Future<void> _checkLoginMethod() async {
-    final providerData = user.providerData;
-    isGoogleLogin =
-        providerData.any((userInfo) => userInfo.providerId == 'google.com');
-    if (!isGoogleLogin) {
-      get(getUserData();
-    } else {
-      name = user.displayName;
-      email = user.email;
-      phoneNumber = user.phoneNumber;
-      photoURL = user.photoURL;
-    }
-    setState(() {});
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen>
       pageController.animateToPage(widget.pageIndex,
           duration: const Duration(milliseconds: 250), curve: Curves.easeInOut);
     }
-    //final user = FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
       bottomNavigationBar: BottomNavWithAnimatedIcons(
         currentIndex: widget.pageIndex,
@@ -117,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen>
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: const Color(0xFF556BDA),
-        title: Text(getViewNameForIndex(widget.pageIndex), style: const TextStyle(color: Colors.black)),
+        title: Text(getViewNameForIndex(widget.pageIndex), style: const TextStyle(color: Colors.white)),
         actions: [
           IconButton(
             onPressed: signUserOut,

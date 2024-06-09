@@ -50,7 +50,7 @@ class _SearchViewState extends State<SearchView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Buscar Línea'),
+        title: const Text('Search Bus Line'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -67,7 +67,7 @@ class _SearchViewState extends State<SearchView> {
               controller: _searchController,
               autofocus: true, 
               decoration: InputDecoration(
-                hintText: 'Busca una línea',
+                hintText: 'Search bus line',
                 hintStyle: const TextStyle(
                   color: Colors.black,
                 ),
@@ -89,7 +89,7 @@ class _SearchViewState extends State<SearchView> {
             ),
             const SizedBox(height: 16.0),
             Text(
-              _hasSearchQuery ? 'Resultados' : 'Recientes',
+              _hasSearchQuery ? 'Results' : 'Recent searches',
               style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,

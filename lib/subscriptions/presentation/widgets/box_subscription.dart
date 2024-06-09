@@ -10,7 +10,7 @@ class BoxSubscription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-          horizontal: 16.0, vertical: 8.0), // Add vertical padding
+          horizontal: 16.0, vertical: 8.0),
       child: Container(
         height: 130.0,
         decoration: BoxDecoration(
@@ -27,7 +27,7 @@ class BoxSubscription extends StatelessWidget {
         ),
         child: const Center(
           child: Text(
-            'Empieza tu prueba gratuita',
+            'Start your subscription now!',
             style: TextStyle(
               color: Colors.white,
               fontSize: 18.0,

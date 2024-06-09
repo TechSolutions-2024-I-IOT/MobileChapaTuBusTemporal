@@ -86,7 +86,7 @@ class _LogInScreenState extends State<LogInScreen> {
 
                     // Welcome back text
                     const Text(
-                      '¡Bienvenido de vuelta, te hemos extrañado!',
+                      'Welcome back, we missed you!',
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
@@ -107,7 +107,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     // Password textfield
                     MyTextField(
                       controller: passwordController,
-                      hintText: 'Contraseña',
+                      hintText: 'Password',
                       obscureText: true,
                     ),
 
@@ -124,7 +124,7 @@ class _LogInScreenState extends State<LogInScreen> {
                               context.go('/auth/reset-password');
                             },
                             child: const Text(
-                              '¿Olvidó su contraseña?',
+                              'Have you forgotten your password?',
                               style: TextStyle(
                                 color: Colors.blue,
                                 fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class _LogInScreenState extends State<LogInScreen> {
 
                     // Sign in button
                     MyButton(
-                      text: 'Iniciar sesión',
+                      text: 'Sign In',
                       onTap: _signInWithEmailAndPassword,
                     ),
 
@@ -159,7 +159,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10.0),
                             child: Text(
-                              'O continuar con',
+                              'Or continue with',
                               style: TextStyle(color: Colors.grey[700]),
                             ),
                           ),
@@ -194,14 +194,14 @@ class _LogInScreenState extends State<LogInScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          '¿No es un miembro?',
+                          'Not a member?',
                           style: TextStyle(color: Colors.grey),
                         ),
                         const SizedBox(width: 4),
                         GestureDetector(
                           onTap: widget.onTap,
                           child: const Text(
-                            'Registrese ahora',
+                            'Register now',
                             style: TextStyle(
                               color: Colors.blue,
                               fontWeight: FontWeight.bold,

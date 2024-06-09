@@ -23,11 +23,8 @@ class _BottomNavWithAnimatedIconsState
   List<SMIBool> riveIconInputs = [];
   List<StateMachineController?> controllers = [];
 
-  // No necesitas esta variable, ya que widget.currentIndex te da el índice actual
-  // int selectedNavIndex = 0;
 
   void onItemTapped(BuildContext context, int index) {
-    // Deja que GoRouter maneje la navegación
     context.go('/home/$index'); 
   }
 

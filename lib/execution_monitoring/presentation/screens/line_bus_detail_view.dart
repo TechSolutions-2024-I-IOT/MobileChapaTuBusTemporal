@@ -63,11 +63,11 @@ class _LineBusDetailViewState extends State<LineBusDetailView> {
               const SizedBox(height: 16),
               const MapScreen(),
               const SizedBox(height: 16),
-              const Text('Paradero: Plaza Norte',
+              const Text('Bus stop: Plaza Norte',
                   style: TextStyle(fontSize: 16)),
-              const Text('Tiempo próximo de llegada: 4 minutos',
+              const Text('Next arrival time: 4 minutes',
                   style: TextStyle(fontSize: 16)),
-              const Text('Aforo: 15/30 (50%)', style: TextStyle(fontSize: 16)),
+              const Text('Capacity: 15/30 (50%)', style: TextStyle(fontSize: 16)),
               const SizedBox(height: 16),
               Row(
                 children: [
@@ -78,7 +78,7 @@ class _LineBusDetailViewState extends State<LineBusDetailView> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 116, 153, 182),
                     ),
-                    child: const Text('Ver próximos buses'),
+                    child: const Text('Next buses'),
                   ),
                   const SizedBox(width: 16),
                   ElevatedButton(
@@ -97,7 +97,7 @@ class _LineBusDetailViewState extends State<LineBusDetailView> {
                     child: Icon(
                       isFavorite ? Icons.star_outline : Icons.star_border,
                       color: isFavorite ? Colors.black : Colors.black,
-                      size: 24, // Adjust icon size as needed
+                      size: 24,
                     ),
                   ),
                 ],

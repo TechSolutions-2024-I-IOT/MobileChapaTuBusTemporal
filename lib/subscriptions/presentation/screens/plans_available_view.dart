@@ -11,7 +11,7 @@ class PlansAvailableView extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: const Text(
-          'Planes disponibles',
+          'Plans available',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -34,22 +34,22 @@ class PlansAvailableView extends StatelessWidget {
               BuildPlanCard(
                 planName: 'Premium',
                 features: [
-                  '1 cuenta Premium',
-                  'Navega sin anuncios',
-                  'Añade cuantas líneas quieras a tus\nfavoritos',
-                  'Recibe notificaciones de tus líneas\nfavoritas',
-                  'Información actualizada sobre el\nestado de los próximos buses más\ncercanos a tu ubicación',
+                  '1 Premium account',
+                  'Browse without ads',
+                  'Add as many lines as you want to your favorites',
+                  'Receive notifications about your favorite lines',
+                  'Up-to-date information on the status of the next buses closest to your location.',
                 ],
               ),
               SizedBox(height: 16),
               BuildPlanCard(
                 planName: 'Estudiantes',
                 features: [
-                  '1 cuenta Premium verificada',
-                  'Descuento para estudiantes',
-                  'Navega sin anuncios',
-                  'Añade hasta 5 líneas a tus favoritos',
-                  'Información actualizada sobre el estado de los\npróximos buses más cercanos a tu ubicación',
+                  '1 Premium account verified as a student',
+                  'Descount on the subscription',
+                  'Browse without ads',
+                  'Add up to 5 lines to your favorites',
+                  'Information on the status of the next buses closest to your location.',
                 ],
               ),
             ],

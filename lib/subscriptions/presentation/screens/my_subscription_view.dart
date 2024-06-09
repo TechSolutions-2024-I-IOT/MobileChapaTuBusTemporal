@@ -8,7 +8,7 @@ class MySubscriptionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mi suscripción'),
+        title: const Text('My supscription'),
         leading: IconButton(
           icon: const Icon( Icons.arrow_back_ios ), 
           onPressed: () {
@@ -25,7 +25,7 @@ class MySubscriptionView extends StatelessWidget {
               BuildSubscriptionItem(
                 icon: Icons.directions_bus,
                 title: 'Premium',
-                status: 'Activo',
+                status: 'Active',
                 color: Colors.blue[100]!,
                 iconColor: Colors.blue,
                 onTap: () {
@@ -35,8 +35,8 @@ class MySubscriptionView extends StatelessWidget {
               const SizedBox(height: 16),
               BuildSubscriptionItem(
                 icon: Icons.search,
-                title: 'Ver planes disponibles',
-                subtitle: 'Premium, Estudiantes',
+                title: 'See available plans',
+                subtitle: 'Premium, Students',
                 color: Colors.white,
                 iconColor: Colors.grey,
                 onTap: () {

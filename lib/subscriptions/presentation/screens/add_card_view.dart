@@ -59,7 +59,6 @@ class _AddCardViewState extends State<AddCardView> {
         child: BlocListener<PaymentsBloc, PaymentsState>(
           listener: (context, state) {
             if (state is PaymentsSuccess) {
-              // Navigate back to payments view after success
               context.go('/home/3/payments');
             } else if (state is PaymentsError) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -126,7 +125,7 @@ class _AddCardViewState extends State<AddCardView> {
                             },
                             inputConfiguration: InputConfiguration(
                               cardNumberDecoration: InputDecoration(
-                                labelText: 'Número de tarjeta',
+                                labelText: 'Card Number',
                                 hintText: 'XXXX XXXX XXXX XXXX',
                                 hintStyle:
                                     const TextStyle(color: Colors.black),
@@ -195,7 +194,7 @@ class _AddCardViewState extends State<AddCardView> {
                                     width: 2.0,
                                   ),
                                 ),
-                                labelText: 'Nombre de tarjeta',
+                                labelText: 'Card Holder',
                               ),
                             ),
                           ),
@@ -210,7 +209,7 @@ class _AddCardViewState extends State<AddCardView> {
                             child: Container(
                               margin: const EdgeInsets.all(12),
                               child: const Text(
-                                'Añadir tarjeta',
+                                'Add Card',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'halter',

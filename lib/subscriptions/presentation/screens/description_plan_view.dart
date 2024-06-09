@@ -11,7 +11,7 @@ class DescriptionPlanView extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: const Text(
-          'Descripción general\ndel plan',
+          'General description\nof the plan',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -34,22 +34,22 @@ class DescriptionPlanView extends StatelessWidget {
               BuildPlanInfoCard(
                 icon: Icons.directions_bus,
                 planName: 'Premium',
-                status: 'Activo',
+                status: 'Active',
                 renewalDate: '20/05/24',
                 color: Colors.blue[100]!,
                 iconColor: Colors.blue,
               ),
               const SizedBox(height: 16),
               BuildPlanDetailsCard(
-                title: 'Esto es lo que incluye el plan',
+                title: 'This is what the plan includes',
                 details: const [
-                  '1 cuenta Premium',
-                  'Navega sin anuncios',
-                  'Añade cuantas líneas quieras a tus favoritos',
-                  'Recibe notificaciones de tus líneas favoritas',
-                  'Información actualizada sobre el estado de\nlos próximos buses más cercanos a tu\nubicación',
+                  '1 Premium account',
+                  'Browse without ads',
+                  'Add as many lines as you want to your favorites',
+                  'Receive notifications about your favorite lines',
+                  'Up-to-date information on the status of the next buses closest to your location.'
                 ],
-                buttonText: 'Ver todos los planes', 
+                buttonText: 'See available plans', 
                 onPressed: () { 
                   context.go('/home/3/subscriptions/plans-available');
                 },
@@ -117,7 +117,7 @@ class BuildPlanInfoCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Tu plan actual se renueva el\n$renewalDate',
+                  'Your current plan will renew at\n$renewalDate',
                   style: const TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ],

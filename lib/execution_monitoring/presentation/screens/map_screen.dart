@@ -68,7 +68,7 @@ class _MapScreenState extends State<MapScreen> {
           );
           
         } else {
-          return const Center(child: Text('Espere por favor...'));
+          return const Center(child: Text('Loading...'));
         }
       },
     );

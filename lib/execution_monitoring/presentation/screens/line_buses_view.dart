@@ -49,7 +49,7 @@ class LineBusesViewState extends State<LineBusesView> {
           _companies = companiesResponse;
         });
 
-        // Fetch buses for the first company initially
+       
         if (_companies.isNotEmpty) {
           final companyId = _companies[0].id;
           final busesResponse = await busUseCase.call(
@@ -62,7 +62,7 @@ class LineBusesViewState extends State<LineBusesView> {
         }
       } catch (e) {
         print('Error fetching data: $e');
-        // Handle errors appropriately (show a message, retry, etc.)
+        
       }
     }
   }
@@ -78,7 +78,7 @@ class LineBusesViewState extends State<LineBusesView> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                // Filter buttons (you can implement filtering logic here)
+                
                 for (int i = 0; i < _companies.length; i++)
                   _buildFilterButton(
                     _companies[i].name,
@@ -88,7 +88,7 @@ class LineBusesViewState extends State<LineBusesView> {
             ),
           ),
         ),
-        // Display the selected company
+
         if (_selectedIndex < _companies.length)
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -108,7 +108,7 @@ class LineBusesViewState extends State<LineBusesView> {
         Expanded(
           child: ListView(
             children: <Widget>[
-              // Display buses of the selected company
+              
               for (final bus in _buses)
                 _buildBusLineTile(bus.licensePlate, bus.state),
             ],
@@ -143,7 +143,6 @@ class LineBusesViewState extends State<LineBusesView> {
           });
         } catch (e) {
           print('Error fetching buses: $e');
-          // Handle errors appropriately (show a message, retry, etc.)
         }
       },
       style: ElevatedButton.styleFrom(

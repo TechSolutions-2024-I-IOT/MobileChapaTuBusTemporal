@@ -62,7 +62,7 @@ class _SettingsViewState extends State<SettingsView> {
       listener: (context, state) {
         if (state is SettingsUpdateSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Perfil actualizado con éxito')),
+            const SnackBar(content: Text('Profile updated successfully!')),
           );
         } else if (state is SettingsError) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -83,11 +83,11 @@ class _SettingsViewState extends State<SettingsView> {
               backgroundColor: Colors.white,
               elevation: 0,
               title: const Text(
-                'Configuración',
+                'Configuration',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
               leading: IconButton(
@@ -127,10 +127,10 @@ class _SettingsViewState extends State<SettingsView> {
                       TextFormField(
                         controller: _firstNameController,
                         decoration:
-                            const InputDecoration(labelText: 'Nombre'),
+                            const InputDecoration(labelText: 'First Name'),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Por favor, ingresa tu nombre';
+                            return 'Please enter your name';
                           }
                           return null;
                         },
@@ -139,10 +139,10 @@ class _SettingsViewState extends State<SettingsView> {
                       TextFormField(
                         controller: _lastNameController,
                         decoration:
-                            const InputDecoration(labelText: 'Apellido'),
+                            const InputDecoration(labelText: 'Last Name'),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Por favor, ingresa tu apellido';
+                            return 'Please enter your last name';
                           }
                           return null;
                         },
@@ -150,12 +150,12 @@ class _SettingsViewState extends State<SettingsView> {
                       const SizedBox(height: 16),
                       TextFormField(
                         initialValue: user.email,
-                        decoration: const InputDecoration(labelText: 'Correo'),
+                        decoration: const InputDecoration(labelText: 'Email'),
                         readOnly: true,
                       ),
                       const SizedBox(height: 32),
                       MyButton(
-                        text: 'Guardar Cambios',
+                        text: 'Save Changes',
                         onTap: () => _updateProfile(user),
                       ),
                     ],

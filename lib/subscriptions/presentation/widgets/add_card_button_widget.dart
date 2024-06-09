@@ -16,7 +16,7 @@ class AddCardButtonWidget extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(12),
         child: const Text(
-          'Añadir tarjeta',
+          'Add Card',
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'halter',

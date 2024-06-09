@@ -15,7 +15,7 @@ class SearchBarWidget extends StatelessWidget {
           context.go('/home/0/search');
         },
         decoration: InputDecoration(
-          hintText: 'Busca una linea',
+          hintText: 'Search bus line',
           hintStyle: const TextStyle(
             color: Colors.black,
           ),

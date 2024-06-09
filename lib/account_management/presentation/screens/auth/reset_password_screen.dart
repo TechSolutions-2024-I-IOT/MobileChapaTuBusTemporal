@@ -34,7 +34,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
           content: Text(
-              'Se ha enviado un enlace a su correo electrónico para restablecer su contraseña.')),
+              'A link has been sent to your email to reset your password.')),
     );
   }
 
@@ -60,7 +60,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           backgroundColor: Colors.white,
           elevation: 1,
           title: const Text(
-            'Restablecer Contraseña',
+            'Reset Password',
             style: TextStyle(color: Colors.black),
           ),
           leading: IconButton(
@@ -76,7 +76,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'Ingrese su dirección de correo electrónico para restablecer su contraseña:',
+                  'Enter your email address to reset your password:',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
                 ),
@@ -88,7 +88,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 ),
                 const SizedBox(height: 30),
                 MyButton(
-                  text: 'Enviar',
+                  text: 'Reset Password',
                   onTap: _resetPassword,
                 ),
               ],
